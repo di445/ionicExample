@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('conFusion.services', ['ngResource'])
-.constant("baseURL","http://localhost:3000/")
+.constant("baseURL","http://localhost:3000/") //change localhost for the IP of the machine running the server
 
 .factory('menuFactory', ['$resource', 'baseURL', function($resource,baseURL) {
   return $resource(baseURL+"dishes/:id",null,  {'update':{method:'PUT' }});
