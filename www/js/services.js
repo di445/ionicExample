@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('conFusion.services', ['ngResource'])
-.constant("baseURL","http://localhost:3000/") //change localhost for the IP of the machine running the server
+.constant("baseURL","http://192.168.0.109:3000/") //change to the IP of the machine running the server
 
 .factory('menuFactory', ['$resource', 'baseURL', function($resource,baseURL) {
   return $resource(baseURL+"dishes/:id",null,  {'update':{method:'PUT' }});
@@ -27,9 +27,10 @@ angular.module('conFusion.services', ['ngResource'])
 
 .factory('favoriteFactory', ['$resource', '$localStorage', 'baseURL', function($resource, $localStorage, baseURL) {
   var favFac = {};
-  var favorites = [];
 
   var favoritesKey = 'favorites';
+  var favorites = $localStorage.getObject(favoritesKey, []);
+
   favFac.addToFavorites = function(index) {
     for (var i = 0; i < favorites.length; i++) {
       if (favorites[i].id == index) {
@@ -53,7 +54,6 @@ angular.module('conFusion.services', ['ngResource'])
   };
 
   favFac.getFavorites = function() {
-    favorites = $localStorage.getObject(favoritesKey);
     return favorites;
   };
 

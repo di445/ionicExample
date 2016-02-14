@@ -345,7 +345,6 @@ $ionicPopup, $ionicLoading, $timeout, $ionicPlatform, $cordovaVibration) {
 
 .filter('favoriteFilter', function(favoriteFactory) {
   return function(dishes, favorites) {
-    favorites = favoriteFactory.getFavorites();
     console.log('Dentro do filtro' + JSON.stringify(favorites));
     var out = [];
 
